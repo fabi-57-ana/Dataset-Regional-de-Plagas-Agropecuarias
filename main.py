@@ -6,6 +6,8 @@ import zipfile
 from io import StringIO
 from typing import List, Optional
 import csv
+from fastapi.staticfiles import StaticFiles
+import os
 
 import cloudinary.uploader
 from fastapi import (
@@ -19,7 +21,7 @@ from fastapi import (
     status,
 )
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from PIL import Image
 from pydantic import BaseModel
 
@@ -59,20 +61,18 @@ app.add_middleware(
     allow_headers=["*"],  # Permite encabezados como Authorization
 )
 
+# Permite servir los archivos estáticos desde la carpeta frontend
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
+
 # Resolución mínima aceptable
 ANCHO_MINIMO = 1280
 ALTO_MINIMO = 720
 
 
-@app.get("/")
+@app.get("/", response_class=FileResponse)
 def read_root():
-    return {
-        "estado": "API Activa",
-        "app_name": settings.APP_NAME,
-        "debug_mode": settings.DEBUG,
-        "proyecto": "Dataset Regional de Plagas Agropecuarias",
-        "institucion": "Iniciativa Regional de Monitoreo Agrícola",
-    }
+    # Devuelve el index.html alojado dentro de la carpeta frontend
+    return FileResponse("frontend/index.html")
 
 
 # ==========================================
