@@ -71,7 +71,7 @@ def read_root():
         "app_name": settings.APP_NAME,
         "debug_mode": settings.DEBUG,
         "proyecto": "Dataset Regional de Plagas Agropecuarias",
-        "institucion": "ISPC - Instituto Superior Politécnico de Córdoba",
+        "institucion": "Iniciativa Regional de Monitoreo Agrícola",
     }
 
 
