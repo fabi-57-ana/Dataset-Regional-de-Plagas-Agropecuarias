@@ -32,7 +32,7 @@ Dataset_Regional_de_Plagas_Agropecuarias/
 ├── requirements.txt      # Archivo de dependencias del proyecto
 └── README.md             # Documentación del repositorio
 ```
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/fabi-57-ana/Dataset-Regional-de-Plagas-Agropecuarias.git
 cd Dataset_Regional_de_Plagas_Agropecuarias
 
 # Windows
